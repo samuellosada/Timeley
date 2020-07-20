@@ -1,8 +1,11 @@
 const express = require('express');
+const mongoose = require('mongoose')
+
+require("dotenv/config");
 
 const app = express();
 
-const port = 3000; // fix this shit. 
+const port = process.env.PORT || 3000; 
 
 //add integration with mongoose and db management : CRUD.
 
