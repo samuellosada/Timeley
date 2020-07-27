@@ -1,27 +1,25 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const User = require('./models/User');
+const usersRoute = require('./routes/users');
 
 require("dotenv/config");
 
 const app = express();
 
+app.use(express.json());
+app.use('/users', usersRoute);
+
 const port = process.env.PORT || 3000; 
 
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () => console.log("Connected to DB."));
+mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true});
 
-const u = new User({
-    firstName: 'Samuel',
-    lastName: 'losada',
-    email: "a@b.c",
-    password: '1',
-});
+const db = mongoose.connection;
 
-u.save((err) => console.log(err));
+db.once('open', () => console.log("Connected to TimeleyDB"))
 
-console.log(User.find({}));
-
-app.get("/", (req, res) => res.send("Hello World number 2!"));
+app.get("/", (req, res) => res.send("Hello World!"));
 
 app.listen(port, () => console.log("listening at port " + port));
+
 

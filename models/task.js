@@ -7,9 +7,9 @@ const taskSchema = new mongoose.Schema({
         type: Boolean,
         required: true
     },
-    tasks: [taskSchema], 
+    tasks: [mongoose.ObjectId], 
 }, {
     timestamps: true
 });
 
-module.export = mongoose.model('Task', taskSchema);
+module.exports = mongoose.model('Task', taskSchema);

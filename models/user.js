@@ -1,5 +1,5 @@
-require('./category.js');
 const mongoose = require('mongoose');
+const categoryModel = require('./category.js');
 
 const UserSchema = new mongoose.Schema({
     firstName: {
@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     categories: {
-        type: [categorySchema]
+        type: [categoryModel.schema]
     }
 }, {
     timestamps: true
